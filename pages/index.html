@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>chat</title>
+  <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/fontawesome.min.css" rel="stylesheet">
+</head>
+<link rel="stylesheet" href="./styles/index.css">
+<body>
+<div id="app">
+  <div class="init-set"
+       v-show="setModal">
+    <div class="ipt-wrapper">
+      <input type="text"
+             placeholder="请输入您的用户名"
+             v-model="userSet.name">
+    </div>
+    <div class="avt-box">
+      <img @click="userSet.avt = index"
+           :key="index"
+           v-for="(item,index) in avtList"
+           :src="'./images/new/user' + index + '.png'"
+           alt="">
+    </div>
+    <div class="btn-wrapper">
+      <div class="btn" @click="login">Login</div>
+    </div>
+  </div>
+  <div class="app-container" v-show="!setModal">
+    <div class="left">
+      <div class="l-head">
+        <div class="title">中华人民共和国神圣不可侵犯</div>
+        <div class="msg-box">
+          <div class="msg"
+               :title="item.name"
+               :class="item.name===user.name?'my-msg':''"
+               v-for="(item,index) in msgList">
+            <div class="avt">
+              <img :src="'./images/new/user' + item.avt + '.png'"
+                   alt="">
+            </div>
+            <div class="text">
+              <span>{{item.msg}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="l-foot">
+        <div class="msg-text">
+          <textarea cols="10"
+                    rows="5"
+                    v-model="msg"></textarea>
+        </div>
+        <div class="btn-wrapper">
+          <div class="btn" @click="send">发送</div>
+          <div class="btn" @click="close">关闭</div>
+        </div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="user-list">参与用户</div>
+      <div v-for="(item,index) in userList">{{item}}</div>
+    </div>
+  </div>
+</div>
+<script src="./js/vue.min.js"></script>
+<script src="./js/axios.min.js"></script>
+<script src="./js/socket.io.js"></script>
+<script>
+  const socket = io ()
+  const vm = new Vue ({
+    el: '#app',
+    data: function () {
+      return {
+        userSet: { name: undefined, avt: undefined },
+        user: { name: undefined, avt: undefined },
+        userList: [],
+        msgList: [
+          { name: 'm', msg: '在吗？', avt: '1' }
+        ],
+        avtList: 30,
+        setModal: true,
+        msg: ''
+      }
+    },
+    created: function () {
+      this.receive ()
+    },
+    methods: {
+      login () {
+        this.user = {}
+        this.user = this.userSet
+        if (this.user.avt !== '' && this.user.name !== '' && this.user.avt && this.user.name) {
+          this.setModal = false
+        } else {
+          alert ('请输入您的用户名并选择头像')
+        }
+
+        this.userList.push (this.user.name)
+      },
+      receive () {
+        socket.on ('receiveMsg', (obj) => {
+          console.log (obj)
+          obj.msg = unescape (obj.msg)
+          this.msgList.push (obj)
+          var userList = this.userList
+          for (let i = 0; i < this.msgList.length; i++) {
+            console.log (item.name)
+          }
+          this.msgList.forEach ((item) => {
+            console.log (item.name)
+            if (userList.indexOf (item.name) === -1) {
+              userList.push (item.name)
+            }
+          })
+        })
+
+      },
+      send () {
+        let newMsg = {}
+        newMsg = this.user
+        newMsg.msg = this.msg
+        // this.msgList.push(newMsg)
+        socket.emit ('sendMsg', {
+          msg: escape (newMsg.msg),
+          avt: newMsg.avt,
+          name: newMsg.name
+        })
+
+      },
+      close () {
+
+      }
+    }
+  })
+</script>
+</body>
+</html>

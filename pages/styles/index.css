@@ -1,0 +1,185 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+#app {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+#app .init-set {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  z-index: 10;
+  background-color: #fff;
+}
+#app .init-set .ipt-wrapper {
+  margin: 20px;
+}
+#app .init-set .avt-box img {
+  width: 60px;
+  height: 60px;
+  margin: 10px;
+}
+#app .init-set .btn-wrapper {
+  display: flex;
+  justify-content: center;
+}
+#app .init-set .btn-wrapper .btn {
+  border: 1px solid #000;
+  margin-right: 20px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  padding: 2px 12px;
+}
+#app .app-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 600px;
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  display: flex;
+}
+#app .app-container .left {
+  flex: 2;
+  height: 600px;
+}
+#app .app-container .left .l-head {
+  background-color: #f5f5f5;
+}
+#app .app-container .left .l-head .title {
+  height: 70px;
+  border-bottom: 1px solid #e7e7e7;
+}
+#app .app-container .left .l-head .msg-box {
+  height: 400px;
+  background-color: #fff;
+  overflow: auto;
+}
+#app .app-container .left .l-foot {
+  height: 127px;
+  border-top: 1px solid #e7e7e7;
+}
+#app .app-container .left .title {
+  text-indent: 20px;
+  line-height: 60px;
+  font-weight: 700;
+}
+#app .app-container .left .msg-text {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+#app .app-container .left .msg-text textarea {
+  width: 100%;
+  resize: none;
+  box-sizing: border-box;
+}
+#app .app-container .left .msg-box {
+  background-color: #f5f5f5;
+}
+#app .app-container .left .msg-box .msg {
+  display: flex;
+  padding: 15px;
+}
+#app .app-container .left .msg-box .msg .avt {
+  width: 50px;
+  height: 50px;
+  padding: 0 10px;
+  overflow: hidden;
+}
+#app .app-container .left .msg-box .msg .avt img {
+  width: 100%;
+  height: 100%;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+#app .app-container .left .msg-box .msg .text {
+  margin-left: 10px;
+  position: relative;
+  padding: 5px 0;
+}
+#app .app-container .left .msg-box .msg .text span {
+  display: inline-block;
+  background-color: #fff;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  line-height: 36px;
+  padding: 0 10px;
+}
+#app .app-container .left .msg-box .msg .text::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 6px solid #fff;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+}
+#app .app-container .left .msg-box .my-msg {
+  flex-direction: row-reverse;
+}
+#app .app-container .left .msg-box .my-msg .text::before {
+  content: '';
+  position: absolute;
+  right: -12px;
+  top: 50%;
+  left: auto;
+  transform: translateY(-50%);
+  border: 6px solid;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-left-color: #fff;
+  border-bottom-color: transparent;
+}
+#app .app-container .left .btn-wrapper {
+  display: flex;
+  justify-content: center;
+}
+#app .app-container .left .btn-wrapper .btn {
+  border: 1px solid #d1e1f0;
+  box-shadow: 0 0 4px #d1e1f0;
+  margin-right: 20px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  padding: 2px 12px;
+  transition: box-shadow ease-in-out 1s;
+}
+#app .app-container .left .btn-wrapper .btn:active {
+  box-shadow: 0 0 4px #d1e1f0 inset;
+}
+#app .app-container .right {
+  flex: 1;
+  padding: 20px;
+  box-shadow: 1px 0 4px #e7e7e7 inset;
+}
+#app .app-container .right .user-list {
+  line-height: 40px;
+  border-bottom: 1px solid #e7e7e7;
+}
+#app .app-container .right .user-list >div {
+  line-height: 30px;
+}
